@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>斗牛</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="dist/styles.css">
+    
+    <script>
+        (function (designWidth, rem2px) {
+            var d = window.document.createElement('div');
+            d.style.width = '1rem';
+            d.style.display = "none";
+            var head = window.document.getElementsByTagName('head')[0];
+            head.appendChild(d);
+            var defaultFontSize = parseFloat(window.getComputedStyle(d, null).getPropertyValue('width'));
+            d.remove();
+            document.documentElement.style.fontSize = window.innerWidth / designWidth * rem2px / defaultFontSize * 100 + '%';
+            var st = document.createElement('style');
+            var portrait = "@media screen and (min-width: " + window.innerWidth + "px) {html{font-size:" + ((window.innerWidth / (designWidth / rem2px) / defaultFontSize) * 100) + "%;}}";
+            var landscape = "@media screen and (min-width: " + window.innerHeight + "px) {html{font-size:" + ((window.innerHeight / (designWidth / rem2px) / defaultFontSize) * 100) + "%;}}"
+            st.innerHTML = portrait + landscape;
+            head.appendChild(st);
+            return defaultFontSize
+        })(750, 100)
+    </script>
+</head>
+
+<body>
+    <div id="content"></div>
+    <audio src="http://cc.stream.qqmusic.qq.com/5938978.m4a?fromtag=52" id="main_music"></audio>
+
+    <div id="inputName">
+        <input type="text" placeholder="某某某" />
+    </div>
+
+    <div class="loading" style=" position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f7222c; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+        <!--<img src="./assets/logo.png" style=" width: 40%;" class="logo">-->
+        <p style="font-size: 12px;color: #fff;position: absolute;bottom: 4px;">疯狂加载中 0%</p>
+    </div>
+
+
+    <!--<div class="huodong animated fadeIn">-->
+        <!--<div class="content">-->
+            <!--<img src="./assets/act.png" alt="">-->
+            <!--<span >-->
+                <!--<img src="./assets/next.png" alt="">-->
+            <!--</span>-->
+        <!--</div>-->
+        <!---->
+    <!--</div>-->
+
+
+    <div id="main_btn">
+        <div class="zhiwen"></div>
+        <div class="logo"></div>
+    </div>
+
+    <script src="dist/store.min.js"></script>
+    <script src="dist/axios.min.js"></script>
+    <script src="dist/config.js"></script>
+    <script src="dist/vendor.min.js"></script>
+    <script src="dist/bundle.min.js"></script>
+    <script>
+        store.set('ak', new Date())
+    </script>
+
+    <script>
+
+        window.M = document.getElementById('main_music')
+
+        store.set('isFirst','100')
+        store.set('name','lishican')
+        store.set('state','1')
+        window.Api = {
+            doRecord: function (cb) {
+                console.log('start record')
+
+                cb && cb()
+            },
+            cancelRecord: function (cb) {
+                console.log('end record')
+                cb && cb()
+            },
+            playVoice: function (cb) {
+                alert(1)
+                setTimeout(function(){
+                    cb&&cb()
+                },3000)
+            },
+            doSubmit: function (cb) {
+                cb && cb()
+            }
+        }
+    </script>
+
+</body>
+
+</html>
