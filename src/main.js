@@ -18,6 +18,7 @@ class Game extends Phaser.Game {
     this.state.add('Boot', BootState, false)
     this.state.add('State1', State1, false)
     this.state.start('Boot')
+
   }
 }
 window.isOnputDown = true
